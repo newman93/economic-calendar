@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h1>Economic Calendar</h1>
+    <span>{{ info }}</span>
+        <form action="{{ path('app_dashboard_from_to') }}">
+            <label for="start">From:</label>
+            <input type="date" id="from" name="from">
+            <label for="start">To:</label>
+            <input type="date" id="to" name="to">
+            <button class="btn btn-primary"  type="submit">Search</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Country</th>
+                    <th>Date</th>
+                    <th>Actual</th>
+                    <th>Previous</th>
+                    <th>Estimate</th>
+                    <th>Change</th>
+                    <th>Change percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+             {% for d in data %}
+             <tr>
+                <td>{{ d.type }}</td>
+                <td>{{ d.country }}</td>
+                <td>{{ d.date }}</td>
+                <td>{{ d.actual }}</td>
+                <td>{{ d.previous }}</td>
+                <td>{{ d.estimate }}</td>
+                <td>{{ d.change }}</td>
+                <td>{{ d.change_percentage }}</td>
+            <tr>
+             {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
